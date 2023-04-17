@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata-price-calculator", "kata-price-calculator\kata-price-calculator.csproj", "{29D836C1-C7C9-4166-926D-B0F037F35F95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29D836C1-C7C9-4166-926D-B0F037F35F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D836C1-C7C9-4166-926D-B0F037F35F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D836C1-C7C9-4166-926D-B0F037F35F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D836C1-C7C9-4166-926D-B0F037F35F95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EF2B9BE-46F4-4FA9-91E4-065CE9031A21}
+	EndGlobalSection
+EndGlobal
