@@ -33,7 +33,7 @@
     }
     private double AddTax(double Price)
     {
-        double addedValue = Price / Tax;
+        double addedValue = Price * Tax;
         return Price + addedValue;
     }
 }
