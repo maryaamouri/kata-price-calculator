@@ -14,12 +14,23 @@
     public double Price
     {
         set =>_price = value;
-        set { 
-            double priceWithDiscount = AppllyDiscount(value);
+    }
+    public double GetAmountDeduced()
+    {
+        return ( GetPriceWithoutDiscount()-_price);
+    }
+    public double GetPriceWithDiscount()
+    {
+        double priceWithDiscount = AppllyDiscount(_price);
             double priceWithTax = AddTax(priceWithDiscount); 
             double roundedValue = Math.Round(priceWithTax, 2); 
-            _price = roundedValue;
+        return roundedValue;
             }
+    public double GetPriceWithoutDiscount()
+    {
+        double priceWithTax = AddTax(_price);
+        double roundedValue = Math.Round(priceWithTax, 2);
+        return roundedValue;
     }
 
 
