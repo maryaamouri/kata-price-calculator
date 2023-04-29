@@ -9,5 +9,6 @@ internal class Program
     {
         Console.WriteLine("Hello Kata!");
         Product product1 = new Product("The Little Prince", 12345, 20.25);
+        Console.WriteLine($"the price with tax is = {product1.Price.ToString()}");
     }
 }
