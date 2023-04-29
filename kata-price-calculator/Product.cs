@@ -14,25 +14,17 @@
     public double Price
     {
         set =>_price = value;
+        get
+        {
+            return AddTax(_price);
+            
+        }
     }
     public double GetAmountDeduced()
     {
-        return ( GetPriceWithoutDiscount()-_price);
+        return Math.Round(_price-AppllyDiscount(), 2); ;
     }
-    public double GetPriceWithDiscount()
-    {
-        double priceWithDiscount = AppllyDiscount(_price);
-            double priceWithTax = AddTax(priceWithDiscount); 
-            double roundedValue = Math.Round(priceWithTax, 2); 
-        return roundedValue;
-            }
-    public double GetPriceWithoutDiscount()
-    {
-        double priceWithTax = AddTax(_price);
-        double roundedValue = Math.Round(priceWithTax, 2);
-        return roundedValue;
-    }
-
+  
 
     static double _tax = 0.2;
     static double _discount = 0.15;
@@ -54,13 +46,14 @@
     }
     private double AddTax(double price)
     {
-        double addedValue = price / Tax;
-        return price + addedValue;
+        double addedValue = price * Tax;
+        double roundedValue = Math.Round(price + addedValue, 2);
+        return roundedValue;
     }
 
-    private double AppllyDiscount(double price)
+    public double AppllyDiscount()
     {
-        double discountedValue = price * Discount;
-        return price - discountedValue;
+        double discountedValue = _price * _discount;
+        return AddTax(_price - discountedValue);
     }
 }
