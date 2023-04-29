@@ -1,5 +1,7 @@
+﻿using kata_price_calculator;
 ﻿using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 
 internal class Program
 {
