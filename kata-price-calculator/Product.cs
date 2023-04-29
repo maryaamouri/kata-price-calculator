@@ -40,9 +40,15 @@
         set => _discount = value;
 
     }
-    private double AddTax(double Price)
+    private double AddTax(double price)
     {
-        double addedValue = Price / Tax;
-        return Price + addedValue;
+        double addedValue = price / Tax;
+        return price + addedValue;
+    }
+
+    private double AppllyDiscount(double price)
+    {
+        double discountedValue = price * Discount;
+        return price - discountedValue;
     }
 }
