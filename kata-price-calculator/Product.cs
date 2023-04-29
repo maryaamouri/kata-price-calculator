@@ -15,7 +15,8 @@
     {
         get => _price;
         set { 
-            double priceWithTax = AddTax(Price: value); 
+            double priceWithDiscount = AppllyDiscount(value);
+            double priceWithTax = AddTax(priceWithDiscount); 
             double roundedValue = Math.Round(priceWithTax, 2); 
             _price = roundedValue;
             }
