@@ -8,10 +8,16 @@
         Tax = 0.2;
     }
 
-    public  string Name { get;  set; }
-    public  int Upc { get;  set; }
-    public double Price { get;  set; }
-    public static double Tax { private set; get; } 
+
+    static double _tax = 0.2;
+    public static double Tax
+    {
+
+        get => _tax;
+
+        set => _tax = value;
+
+    }
     private double AddTax(double Price)
     {
         double addedValue = Price / Tax;
