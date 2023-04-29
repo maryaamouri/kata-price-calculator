@@ -5,7 +5,20 @@
         this.Name = Name;
         this.Upc = Upc;
         this.Price = Price;
-        Tax = 0.2;
+
+    }
+
+    public string Name { get; set; }
+    public int Upc { get; set; }
+    double _price;
+    public double Price
+    {
+        get => _price;
+        set { 
+            double priceWithTax = AddTax(Price: value); 
+            double roundedValue = Math.Round(priceWithTax, 2); 
+            _price = roundedValue;
+            }
     }
 
 
