@@ -23,12 +23,21 @@
 
 
     static double _tax = 0.2;
+    static double _discount = 0.15;
     public static double Tax
     {
 
         get => _tax;
 
         set => _tax = value;
+
+    }
+    public static double Discount
+    {
+
+        get => _discount;
+
+        set => _discount = value;
 
     }
     private double AddTax(double Price)
