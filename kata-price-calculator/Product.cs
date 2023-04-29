@@ -13,7 +13,7 @@
     double _price;
     public double Price
     {
-        get => _price;
+        set =>_price = value;
         set { 
             double priceWithDiscount = AppllyDiscount(value);
             double priceWithTax = AddTax(priceWithDiscount); 
