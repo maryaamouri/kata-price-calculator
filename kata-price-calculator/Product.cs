@@ -1,4 +1,7 @@
-﻿internal class Product
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+
+internal class Product
 {
     public Product(string Name, int Upc, double Price)
     {
@@ -10,14 +13,12 @@
 
     public string Name { get; set; }
     public int Upc { get; set; }
-    double _price;
     public double Price
     {
         set =>_price = value;
         get
         {
             return AddTax(_price);
-            
         }
     }
     public double GetAmountDeduced()
@@ -25,7 +26,6 @@
         return Math.Round(_price-AppllyDiscount(), 2); ;
     }
   
-
     static double _tax = 0.2;
     static double _discount = 0.15;
     public static double Tax
@@ -46,11 +46,8 @@
     }
     private double AddTax(double price)
     {
-        double addedValue = price * Tax;
-        double roundedValue = Math.Round(price + addedValue, 2);
-        return roundedValue;
+        get =>  _price * Tax;
     }
-
     public double AppllyDiscount()
     {
         double discountedValue = _price * _discount;
