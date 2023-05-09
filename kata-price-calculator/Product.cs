@@ -63,11 +63,9 @@ internal class Product
             return discountamount;
             }
     }
-
-
-    public double GetAmountDeduced()
+    double AddTax(double price)
     {
-        return Math.Round(UniversalDiscountAmount + UpcDiscountAmount, 2);
+        return price + TaxAmount;
     }
     public double AppllyDiscount()
     {
@@ -75,10 +73,8 @@ internal class Product
         double price = AddTax(_price - discountamount);
         return Math.Round(price, 2); ;
     }
-    double AddTax(double price)
+    public double GetAmountDeduced()
     {
-        return price + TaxAmount;
-        
+        return Math.Round(UniversalDiscountAmount + UpcDiscountAmount, 2);
     }
-
 }
