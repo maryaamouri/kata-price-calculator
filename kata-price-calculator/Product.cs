@@ -35,6 +35,10 @@ internal class Product
     public double _taxAmount;
 
     public static double Tax
+    {   get => _tax;
+        set => _tax = value;
+    }
+    public static double UniversalDiscount
     {
 
         get => _tax;
