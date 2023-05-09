@@ -40,11 +40,8 @@ internal class Product
     }
     public static double UniversalDiscount
     {
-
-        get => _tax;
-
-        set => _tax = value;
-
+        get => _universalDiscount;
+        set => _universalDiscount = value;
     }
     public static double Discount
     {
