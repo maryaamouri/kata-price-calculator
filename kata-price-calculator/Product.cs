@@ -23,7 +23,7 @@ internal class Product
     }
     public double GetAmountDeduced()
     {
-        return Math.Round(_price-AppllyDiscount(), 2); ;
+        return Math.Round(DiscountAmount+ UpcDiscountAmount, 2);
     }
   
     static double _tax = 0.2;
