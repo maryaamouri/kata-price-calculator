@@ -8,8 +8,18 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("Hello Kata!");
-        Product product1 = new Product("The Little Prince", 12345, 20.25);
-        Report report1 = new Report(product1);
+        var product1 = new Product("The Little Prince", 12345, 20.25);
+        // case 1
+        Product.Tax = 0.2;
+        Product.UniversalDiscount = 0.15;
+        Product.UPCDiscount = 0.07;
+        Product.SelectedUpc = 12345;
+        var report1 = new Report(product1);
+        report1.DisplayWithDiscount();
+        // case 2
+        Console.WriteLine("------------");
+        Product.SelectedUpc = 789;
+        Product.Tax = 0.21;
         report1.DisplayWithDiscount();
 
 
