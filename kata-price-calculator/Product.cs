@@ -5,7 +5,6 @@
         this.Name = Name;
         this.Upc = Upc;
         this.Price = Price;
-
     }
 
     public string Name { get; set; }
@@ -16,8 +15,7 @@
         set =>_price = value;
         get
         {
-            return AddTax(_price);
-            
+            return AddTax(_price);    
         }
     }
     public double GetAmountDeduced()
@@ -25,7 +23,6 @@
         return Math.Round(_price-AppllyDiscount(), 2); ;
     }
   
-
     static double _tax = 0.2;
     static double _discount = 0.15;
     public static double Tax
@@ -37,12 +34,9 @@
 
     }
     public static double Discount
-    {
-
+    {   
         get => _discount;
-
         set => _discount = value;
-
     }
     private double AddTax(double price)
     {
