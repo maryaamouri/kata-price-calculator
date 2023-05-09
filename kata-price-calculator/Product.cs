@@ -27,7 +27,13 @@ internal class Product
     }
   
     static double _tax = 0.2;
-    static double _discount = 0.15;
+    static double _universalDiscount = 0.15;
+    double _price;
+    static double _upcDiscount = 0.07;
+    static int _selectedUpc = 12345;
+    public double _discountAmount;
+    public double _taxAmount;
+
     public static double Tax
     {
 
@@ -44,7 +50,7 @@ internal class Product
         set => _discount = value;
 
     }
-    private double AddTax(double price)
+    public double TaxAmount
     {
         get =>  _price * Tax;
     }
