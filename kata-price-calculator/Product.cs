@@ -5,7 +5,6 @@
         this.Name = Name;
         this.Upc = Upc;
         this.Price = Price;
-
     }
 
     public string Name { get; set; }
@@ -13,15 +12,13 @@
     double _price;
     public double Price
     {
-        get => _price;
-        set { 
-            double priceWithTax = AddTax(Price: value); 
-            double roundedValue = Math.Round(priceWithTax, 2); 
-            _price = roundedValue;
-            }
+        get {
+            double priceWithTax = AddTax(_price);
+            double roundedValue = Math.Round(priceWithTax, 2);
+            return roundedValue; 
+        }
+        set =>_price = value;
     }
-
-
     static double _tax = 0.2;
     public static double Tax
     {
@@ -33,7 +30,7 @@
     }
     private double AddTax(double Price)
     {
-        double addedValue = Price * Tax;
+        double addedValue = Price * _tax;
         return Price + addedValue;
     }
 }
