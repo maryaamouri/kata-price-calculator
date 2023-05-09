@@ -70,7 +70,14 @@ internal class Product
     }
     public double AppllyDiscount()
     {
-        double discountedValue = _price * _discount;
-        return AddTax(_price - discountedValue);
+        double discountamount = DiscountAmount+UpcDiscountAmount;
+        double price = AddTax(_price - discountamount);
+        return Math.Round(price, 2); ;
     }
+    double AddTax(double price)
+    {
+        return price + TaxAmount;
+        
+    }
+
 }
