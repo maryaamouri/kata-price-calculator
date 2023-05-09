@@ -1,0 +1,20 @@
+﻿namespace kata_price_calculator
+{
+    internal class Report
+    {
+        Product product;
+
+        public Report(Product product)
+        {
+            this.product = product;
+        }
+        public void DisplayWithDiscount()
+        {
+            Console.WriteLine($"Tax = {Product.Tax}%, discount = {Product.UniversalDiscount}%\r\nProgram prints price {product.AppllyDiscount()}\r\nProgram displays {product.GetAmountDeduced()} amount which was deduced");
+        }
+        public void DisplayWithoutDiscount()
+        {
+            Console.WriteLine($"Tax = {Product.Tax}%, discount = no discount\r\nProgram prints price {product.Price}\r\nProgram doesn’t show any discounted amount.");
+        }
+    }
+}
