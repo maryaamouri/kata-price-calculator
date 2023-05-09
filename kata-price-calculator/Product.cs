@@ -43,13 +43,26 @@ internal class Product
         get => _universalDiscount;
         set => _universalDiscount = value;
     }
-    public static double Discount
+    public static double UPCDiscount { 
+        get => _upcDiscount; 
+        set => _upcDiscount = value; 
+    }
+    public static int SelectedUpc { 
+        set => _selectedUpc=value;
+        get=> _selectedUpc;
+    }
+    public double DiscountAmount
     {
-
-        get => _discount;
-
-        set => _discount = value;
-
+        get=> _price * UniversalDiscount;
+    }
+    public double UpcDiscountAmount
+    {
+        get {
+            double discountamount = 0;
+            if (Upc == SelectedUpc)
+                discountamount += _price * UPCDiscount;
+            return discountamount;
+            }
     }
     public double TaxAmount
     {
