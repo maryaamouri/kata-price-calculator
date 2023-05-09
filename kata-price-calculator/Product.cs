@@ -10,6 +10,9 @@ internal class Product
     static int _selectedUpc = 12345;
     public double _discountAmount;
     public double _taxAmount;
+    public bool _isUniversalDiscountAppllied=true;
+    public bool _isUpcDiscountAppllied=false;
+
     public Product(string Name, int Upc, double Price)
     {
         this.Name = Name;
@@ -70,6 +73,8 @@ internal class Product
         double price = AddTax(_price - discountamount);
         return Math.Round(price, 2); ;
     }
+    public bool IsUniversalDiscountAppllied { set; get; }
+    public bool IsUpcDiscountAppllied { set; get; }
     public double GetAmountDeduced()
     {
         return Math.Round(UniversalDiscountAmount + UpcDiscountAmount, 2);
