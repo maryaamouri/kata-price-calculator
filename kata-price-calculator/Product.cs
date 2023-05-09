@@ -3,10 +3,9 @@ using System.Diagnostics;
 
 internal class Product
 {
-
+    double _price;
     static double _tax = 0.2;
     static double _universalDiscount = 0.15;
-    double _price;
     static double _upcDiscount = 0.07;
     static int _selectedUpc = 12345;
     public double _discountAmount;
@@ -16,9 +15,7 @@ internal class Product
         this.Name = Name;
         this.Upc = Upc;
         this.Price = Price;
-
     }
-
     public string Name { get; set; }
     public int Upc { get; set; }
     public double Price
