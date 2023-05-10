@@ -10,11 +10,16 @@
         }
         public void DisplayWithDiscount()
         {
-            Console.WriteLine($"Tax = {Product.Tax}%, discount = {Product.UniversalDiscount}%\r\nProgram prints price {product.AppllyDiscount()}\r\nProgram displays {product.GetAmountDeduced()} amount which was deduced");
+            Console.WriteLine($"Tax = {Product.Tax}%, " +
+                $"discount = {Product.UniversalDiscount}%\r\n" +
+                $"Program prints price {product.AppllyDiscount()}\r\n" +
+                $"Program displays {product.GetAmountDeduced()} amount which was deduced");
         }
         public void DisplayWithoutDiscount()
         {
-            Console.WriteLine($"Tax = {Product.Tax}%, discount = no discount\r\nProgram prints price {product.Price}\r\nProgram doesn’t show any discounted amount.");
+            Console.WriteLine($"Tax = {Product.Tax}%, discount = no discount\r\n" +
+                $"Program prints price {product.Price}\r\n" +
+                $"Program doesn’t show any discounted amount.");
         }
         public void DispalyPrecedence()
         {
