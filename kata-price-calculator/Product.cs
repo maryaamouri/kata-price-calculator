@@ -31,7 +31,7 @@ internal class Product
         double price = Price + TaxAmount(Price - discountamount);
         return price;
     }
-    public bool IsUniversalDiscountAppllied { set; get; }
+    public bool IsUniversalDiscountAppllied { set; get; } = true;
     public bool IsUpcDiscountAppllied
     {
         private set {
