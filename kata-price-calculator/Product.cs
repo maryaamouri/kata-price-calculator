@@ -17,8 +17,8 @@ internal class Product
     public static double Tax { get; set; } = 0.2;
     public static double UniversalDiscount { get; set; } = 0.15;
     public static double UPCDiscount { get; set; } = 0.07;
-    public double UniversalDiscountAmount => _price * UniversalDiscount;
-    public double UpcDiscountAmount => _price * UPCDiscount;
+    public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
+    public double UpcDiscountAmount(double price) => price * UPCDiscount;
     public static int SelectedUpc { set; get; } = 12345;
     private double AddTax(double price) => price + TaxAmount;
     public double AppllyDiscount()
