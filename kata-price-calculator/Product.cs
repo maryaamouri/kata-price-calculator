@@ -17,11 +17,22 @@ internal class Product
     public static double Tax { get; set; } = 0.2;
     public static double UniversalDiscount { get; set; } = 0.15;
     public static double UPCDiscount { get; set; } = 0.07;
+    public static int SelectedUpc { set; get; } = 12345;
+    public bool IsUniversalDiscountAppllied { set; get; } = true;
+    public bool IsUpcDiscountAppllied
+    {
+        private set
+        {
+            if (Upc == SelectedUpc)
+                _isUpcDiscountAppllied = true;
+            else _isUpcDiscountAppllied = false;
+        }
+        get => _isUpcDiscountAppllied;
+    }
     public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
     public double UpcDiscountAmount(double price) => price * UPCDiscount;
-    public static int SelectedUpc { set; get; } = 12345;
     public double TaxAmount(double price) => price *Tax;
-    public double AppllyDiscountBeforeTax()
+    public double AppllyDiscounts()
     {
         double discountamount = 0;
         if (IsUniversalDiscountAppllied)
@@ -31,18 +42,15 @@ internal class Product
         double price = Price + TaxAmount(Price - discountamount);
         return price;
     }
-    public bool IsUniversalDiscountAppllied { set; get; } = true;
-    public bool IsUpcDiscountAppllied
+    public double AppllyUpcDiscountAfterTax()
     {
-        private set {
-            if (Upc == SelectedUpc)
-                _isUpcDiscountAppllied = true;
-            else _isUpcDiscountAppllied = false;
-        }
-        get => _isUpcDiscountAppllied;
+        double price = Price;
+        if (IsUpcDiscountAppllied)
+            price = Price - UpcDiscountAmount(Price);
+        price += TaxAmount(price);
+        if (IsUniversalDiscountAppllied)
+            price -= UniversalDiscountAmount(price);
+        return price;
     }
-    public double GetAmountDeduced()
-    {
-        return UniversalDiscountAmount(Price) + UpcDiscountAmount(Price);
-    }
+
 }

@@ -9,7 +9,6 @@ internal class Program
     {
         Console.WriteLine("Hello Kata!");
         var product1 = new Product("The Little Prince", 12345, 20.25);
-        // case 1
         Product.Tax = 0.2;
         Product.UniversalDiscount = 0.15;
         Product.UPCDiscount = 0.07;
