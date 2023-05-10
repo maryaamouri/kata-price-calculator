@@ -2,12 +2,9 @@
 using System.Diagnostics;
 internal class Product
 {
-    double _price;
     public double _discountAmount=0;
     public double _taxAmount=0;
-    public bool _isUniversalDiscountAppllied=true;
     public bool _isUpcDiscountAppllied=false;
-
     public Product(string Name, int Upc, double Price)
     {
         this.Name = Name;
@@ -23,7 +20,6 @@ internal class Product
         get => AddTax(_price);
     }
     public static double Tax { get; set; } = 0.2;
-    public double TaxAmount => _price * Tax;
     public static double UniversalDiscount { get; set; } = 0.15;
     public static double UPCDiscount { get; set; } = 0.07;
     public double UniversalDiscountAmount => _price * UniversalDiscount;
