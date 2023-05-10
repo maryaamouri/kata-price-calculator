@@ -43,6 +43,6 @@ internal class Product
     }
     public double GetAmountDeduced()
     {
-        return Math.Round(UniversalDiscountAmount + UpcDiscountAmount, 2);
+        return UniversalDiscountAmount(Price) + UpcDiscountAmount(Price);
     }
 }
