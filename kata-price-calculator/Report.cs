@@ -8,28 +8,32 @@
         {
             this.product = product;
         }
-        public void DisplayWithDiscount()
+        public void Dispaly()
         {
-            Console.WriteLine($"Tax = {Product.Tax}%, " +
-                $"discount = {Product.UniversalDiscount}%\r\n" +
-                $"Program prints price {product.AppllyDiscount()}\r\n" +
-                $"Program displays {product.GetAmountDeduced()} amount which was deduced");
-        }
-        public void DisplayWithoutDiscount()
-        {
-            Console.WriteLine($"Tax = {Product.Tax}%, discount = no discount\r\n" +
-                $"Program prints price {product.Price}\r\n" +
-                $"Program doesn’t show any discounted amount.");
-        }
-        public void DispalyPrecedence()
-        {
-            Console.WriteLine($"Tax = {Product.Tax}%, " +
-                $"universal discount (after tax) = {Product.UniversalDiscount*100}%\r\n" +
-                $"UPC-discount (before tax) = {Product.UPCDiscount}% for UPC={Product.SelectedUpc}\r\n" +
-                $"UPC discount amount = {product.UpcDiscountAmount}, remaining price = {product.AppllyDiscount}%\r\n" +
-                $"Tax amount = {product.TaxAmount}%\r\n,  universal discount = {Product.UniversalDiscount}" +
-                $"Program prints price {product.Price}\r\n" +
-                $"Program displays {product.GetAmountDeduced()}");
+            double _universalDiscount = Math.Round(Product.UniversalDiscount * 100, 2);
+            double _upcDiscount= Math.Round(Product.UPCDiscount * 100, 2);
+            double _upcDiscountAmount = Math.Round(product.UpcDiscountAmount(product.Price), 2);
+            double _remainingPrice = Math.Round(product.Price,2)- _upcDiscountAmount;
+            double _taxAmount = Math.Round(product.TaxAmount(_remainingPrice), 2);
+            double _universalDiscountAmount = Math.Round(product.UniversalDiscountAmount(_remainingPrice), 2);
+            double _finalPrice =Math.Round(product.Price-_upcDiscountAmount+_taxAmount-_universalDiscountAmount,2);
+
+            string productInfo = $"Title = {product.Name}, UPC = {product.Upc}";
+            string taxReport = $"Tax = {Product.Tax*100}%, ";
+            string uniDiscountReport = $"universal discount (after tax) = {_universalDiscount}%, ";
+            string upcDiscountReport = $"UPC-discount (before tax) = {_upcDiscount}% for UPC={product.Upc}";
+            string priceReport = $"UPC discount amount = ${_upcDiscountAmount}," +
+                $" remaining price = {_remainingPrice}\n" +
+                $"Tax amount = {_taxAmount}" +
+                $" universal discount amount= {_universalDiscountAmount}\n" +
+                $"Final price = {_finalPrice}";
+
+            Console.WriteLine(
+                productInfo+"\n" + 
+                taxReport+
+                uniDiscountReport+"\n"+
+                upcDiscountReport + "\n" +
+                priceReport);
         }
     }
 }

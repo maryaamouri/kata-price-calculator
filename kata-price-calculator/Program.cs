@@ -15,13 +15,6 @@ internal class Program
         Product.UPCDiscount = 0.07;
         Product.SelectedUpc = 12345;
         var report1 = new Report(product1);
-        report1.DisplayWithDiscount();
-        // case 2
-        Console.WriteLine("------------");
-        Product.SelectedUpc = 789;
-        Product.Tax = 0.21;
-        report1.DisplayWithDiscount();
-
-
+        report1.Dispaly();
     }
 }
