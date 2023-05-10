@@ -12,13 +12,8 @@ internal class Product
         this.Price = Price;
     }
     public string Name { get; set; }
-    public int Upc { get; set;
-    }
-    public double Price
-    {
-        set => _price = value;
-        get => AddTax(_price);
-    }
+    public int Upc { get; set;}
+    public double Price { set; get; }
     public static double Tax { get; set; } = 0.2;
     public static double UniversalDiscount { get; set; } = 0.15;
     public static double UPCDiscount { get; set; } = 0.07;
