@@ -20,16 +20,16 @@ internal class Product
     public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
     public double UpcDiscountAmount(double price) => price * UPCDiscount;
     public static int SelectedUpc { set; get; } = 12345;
-    private double AddTax(double price) => price + TaxAmount;
-    public double AppllyDiscount()
+    public double TaxAmount(double price) => price *Tax;
+    public double AppllyDiscountBeforeTax()
     {
         double discountamount = 0;
         if (IsUniversalDiscountAppllied)
-            discountamount = UniversalDiscountAmount;
-        if(IsUpcDiscountAppllied)
-            discountamount += UpcDiscountAmount;
-        double price = AddTax(_price - discountamount);
-        return Math.Round(price, 2); ;
+            discountamount = UniversalDiscountAmount(Price);
+        if (IsUpcDiscountAppllied)
+            discountamount += UpcDiscountAmount(Price);
+        double price = Price + TaxAmount(Price - discountamount);
+        return price;
     }
     public bool IsUniversalDiscountAppllied { set; get; }
     public bool IsUpcDiscountAppllied
