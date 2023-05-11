@@ -10,13 +10,42 @@
         }
         public void Dispaly()
         {
-            double _universalDiscount = Math.Round(Product.UniversalDiscount * 100, 2);
-            double _upcDiscount= Math.Round(Product.UPCDiscount * 100, 2);
-            double _upcDiscountAmount = Math.Round(product.UpcDiscountAmount(product.Price), 2);
-            double _remainingPrice = Math.Round(product.Price,2)- _upcDiscountAmount;
-            double _taxAmount = Math.Round(product.TaxAmount(_remainingPrice), 2);
-            double _universalDiscountAmount = Math.Round(product.UniversalDiscountAmount(_remainingPrice), 2);
-            double _finalPrice =Math.Round(product.Price-_upcDiscountAmount+_taxAmount-_universalDiscountAmount,2);
+            double _cost = product.Price;
+            double _taxAmount = Math.Round(product.TaxAmount(_cost), 2);
+            double _upcDiscountAmount = Math.Round(product.UpcDiscountAmount(_cost), 2);
+            double _universalDiscountAmount = Math.Round(product.UniversalDiscountAmount(_cost), 2);
+            double _discounts = _universalDiscountAmount + _upcDiscountAmount;
+            double _addtionalCosts =0;
+            double _finalPrice = Math.Round(_cost + _taxAmount - _discounts, 2);
+
+            string productInfo = $"Title = {product.Name}, UPC = {product.Upc}, Price = {product.Price}";
+            string taxReport = $"Tax = {_taxAmount}";
+            string discountReport="";
+            string addtionalCostsReport="";
+
+            if (!product._isUpcDiscountAppllied && !product.IsUniversalDiscountAppllied)
+                discountReport += "no discounts";
+            else  discountReport = $"discount = {_discounts}";
+
+            if(product.Transport != null)
+            {
+                addtionalCostsReport += $"Transport = {product.Transport.Amount} \n";
+                _addtionalCosts += product.Transport.Amount;
+            }
+            if (product.Administrative != null)
+            {
+                addtionalCostsReport += $"Administrative = {product.Administrative.Amount}\n";
+                _addtionalCosts += product.Administrative.Amount;
+            }
+            if (product.Packaging != null)
+            {
+                addtionalCostsReport += $"Packaging = {product.Packaging.Amount}\n";
+                _addtionalCosts += product.Packaging.Amount;
+            }
+            else if(product.Transport == null &&
+                product.Administrative != null&&
+                product.Packaging != null)
+                addtionalCostsReport = "no addtional costs";
 
             string productInfo = $"Title = {product.Name}, UPC = {product.Upc}";
             string taxReport = $"Tax = {Product.Tax*100}%, ";
