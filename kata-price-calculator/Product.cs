@@ -1,5 +1,6 @@
 ﻿using kata_price_calculator;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 internal class Product
 {
@@ -31,8 +32,19 @@ internal class Product
         }
         get => _isUpcDiscountAppllied;
     }
-    public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
-    public double UpcDiscountAmount(double price) => price * UPCDiscount;
+    public double UniversalDiscountAmount(double price) {
+        if (IsUniversalDiscountAppllied)
+            return price * UniversalDiscount;
+        else
+            return 0;
+     }
+    public double UpcDiscountAmount(double price)
+    {
+        if (IsUpcDiscountAppllied)
+            return price * UPCDiscount;
+        else
+            return 0;
+    }
     public double TaxAmount(double price) => price *Tax;
     public Expense Transport { set; get; } = null;
     public Expense Administrative { set; get; } = null;
@@ -50,7 +62,7 @@ internal class Product
     {
         Packaging = new Expense(description, amount);
     }
-    public double AppllyDiscounts()
+    public double CalculatePrice()
     {
         double discountamount = 0;
         if (IsUniversalDiscountAppllied)
