@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using kata_price_calculator;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 internal class Product
 {
@@ -19,6 +21,7 @@ internal class Product
     public static double UPCDiscount { get; set; } = 0.07;
     public static int SelectedUpc { set; get; } = 12345;
     public bool IsUniversalDiscountAppllied { set; get; } = true;
+
     public bool IsUpcDiscountAppllied
     {
         private set
@@ -29,10 +32,37 @@ internal class Product
         }
         get => _isUpcDiscountAppllied;
     }
-    public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
-    public double UpcDiscountAmount(double price) => price * UPCDiscount;
+    public double UniversalDiscountAmount(double price) {
+        if (IsUniversalDiscountAppllied)
+            return price * UniversalDiscount;
+        else
+            return 0;
+     }
+    public double UpcDiscountAmount(double price)
+    {
+        if (IsUpcDiscountAppllied)
+            return price * UPCDiscount;
+        else
+            return 0;
+    }
     public double TaxAmount(double price) => price *Tax;
-    public double AppllyDiscounts()
+    public Expense Transport { set; get; } = null;
+    public Expense Administrative { set; get; } = null;
+    public Expense Packaging { set; get; } = null;
+
+    public void AddTransport(string description, double amount)
+    {
+        Transport = new Expense(description, amount);
+    }
+    public void AddAdministrative(string description, double amount)
+    {
+        Administrative = new Expense(description, amount);
+    }
+    public void AddPackaging(string description, double amount)
+    {
+        Packaging = new Expense(description, amount);
+    }
+    public double CalculatePrice()
     {
         double discountamount = 0;
         if (IsUniversalDiscountAppllied)
@@ -40,6 +70,12 @@ internal class Product
         if (IsUpcDiscountAppllied)
             discountamount += UpcDiscountAmount(Price);
         double price = Price + TaxAmount(Price - discountamount);
+        if (Packaging != null)
+            price += Packaging.Amount;
+        if (Transport != null)
+            price += Transport.Amount;
+        if (Administrative != null)
+            price += Administrative.Amount;
         return price;
     }
     public double AppllyUpcDiscountAfterTax()
@@ -50,6 +86,14 @@ internal class Product
         price += TaxAmount(price);
         if (IsUniversalDiscountAppllied)
             price -= UniversalDiscountAmount(price);
+
+        if (Packaging != null)
+            price += Packaging.Amount;
+        if (Transport != null)
+            price += Transport.Amount;
+        if (Administrative != null)
+            price += Administrative.Amount;
+
         return price;
     }
 
