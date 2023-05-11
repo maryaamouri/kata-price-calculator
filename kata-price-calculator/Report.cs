@@ -10,20 +10,20 @@ namespace kata_price_calculator
         {
             this.product = product;
         }
+
         public void Dispaly()
         {
-            double _cost = product.Price;
-            double _taxAmount = Math.Round(product.TaxAmount(_cost), 2);
-            double _upcDiscountAmount = Math.Round(product.UpcDiscountAmount(_cost), 2);
-            double _universalDiscountAmount = Math.Round(product.UniversalDiscountAmount(_cost), 2);
-            double _discounts = _universalDiscountAmount + _upcDiscountAmount;
-            double _addtionalCosts =0;
-            double _finalPrice = Math.Round(_cost + _taxAmount - _discounts, 2);
+            var _cost = product.Price;
+            var _taxAmount = Math.Round(product.TaxAmount(_cost), 2);
+            var _upcDiscountAmount = Math.Round(product.UpcDiscountAmount(_cost), 2);
+            var _universalDiscountAmount = Math.Round(product.UniversalDiscountAmount(_cost), 2);
+            var _discounts = _universalDiscountAmount + _upcDiscountAmount;
+            var _addtionalCosts =0.0;
 
-            string productInfo = $"Title = {product.Name}, UPC = {product.Upc}, Price = {product.Price}";
-            string taxReport = $"Tax = {_taxAmount}";
-            string discountReport="";
-            string addtionalCostsReport="";
+            var productInfo = $"Title = {product.Name}, UPC = {product.Upc}, Price = {product.Price}";
+            var taxReport = $"Tax = {_taxAmount}";
+            var discountReport ="";
+            var addtionalCostsReport ="";
 
             if (!product._isUpcDiscountAppllied && !product.IsUniversalDiscountAppllied)
                 discountReport += "no discounts";
@@ -32,7 +32,7 @@ namespace kata_price_calculator
             if(product.Transport != null)
             {
                 addtionalCostsReport += $"Transport = {product.Transport.Amount} \n";
-                _addtionalCosts += product.Transport.Amount;
+                _addtionalCosts = _addtionalCosts+product.Transport.Amount;
             }
             if (product.Administrative != null)
             {
@@ -49,7 +49,7 @@ namespace kata_price_calculator
                 product.Packaging != null)
                 addtionalCostsReport = "no addtional costs";
 
-            _finalPrice = Math.Round(_cost + _taxAmount - _discounts+_addtionalCosts, 2);
+            var _finalPrice = Math.Round(_cost + _taxAmount - _discounts+_addtionalCosts, 2);
 
             Console.WriteLine(
                 productInfo+"\n" + 
