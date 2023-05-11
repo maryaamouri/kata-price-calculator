@@ -34,9 +34,9 @@ internal class Product
     public double UniversalDiscountAmount(double price) => price * UniversalDiscount;
     public double UpcDiscountAmount(double price) => price * UPCDiscount;
     public double TaxAmount(double price) => price *Tax;
-    Expense Transport { set; get; } = null;
-    Expense Administrative { set; get; } = null;
-    Expense Packaging { set; get; } = null;
+    public Expense Transport { set; get; } = null;
+    public Expense Administrative { set; get; } = null;
+    public Expense Packaging { set; get; } = null;
 
     public void AddTransport(string description, double amount)
     {
