@@ -8,13 +8,12 @@ namespace kata_price_calculator
 {
     internal class Expense
     {
-        string Description { set; get; }
-        double Amount { set; get; }
-
         public Expense(string description, double amount)
         {
             Description = description;
             Amount = amount;
         }
+        public string Description { set; get; }
+        public double Amount { set; get; }
     }
 }
